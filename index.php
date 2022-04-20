@@ -10,7 +10,7 @@
 <body>
     <h1 align="center">Báo Dân Trí</h1>
     <?php
-    $conn = mysqli_connect('localhost','root','','tin tuc');
+    require "connect.php";
     $sql = "select * from tin_tuc";
     $result = mysqli_query($conn,$sql);
     ?>
@@ -19,6 +19,8 @@
         <tr>
             <th>Tên Bài</th>
             <th>Ảnh</th>
+            <th>Sửa</th>
+            <th>Xóa</th>
         </tr>
         <?php foreach ($result as $each_result){ ?>
             <tr>
@@ -28,6 +30,12 @@
                     </a>
                 </td>
                 <td align="center"><img src="<?php echo $each_result['anh'] ?>" alt="demo" height="160"></td>
+                <td>
+                    <a href="update.php?ma=<?php echo $each_result['Ma']?>">Sửa</a>
+                </td>
+                <td>
+                    <a href="delete.php?ma=<?php echo $each_result['Ma']?>">Xóa</a>
+                </td>
             </tr>
         <?php } ?>
     </table>
